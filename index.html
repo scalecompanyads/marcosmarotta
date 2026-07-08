@@ -1,0 +1,1362 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <link rel="preload" as="image" href="hero-bg-mobile.png" media="(max-width: 759px)">
+  <link rel="preload" as="image" href="hero-bg.png" media="(min-width: 760px)">
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="logo-azul.png">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sinay & Marotta Advogados | Família, Divórcio e Proteção Patrimonial</title>
+  <meta name="description"
+    content="Orientação jurídica humanizada e ágil para divórcio, partilha e guarda de filhos. Atendimento sigiloso presencial ou pelo WhatsApp. Proteja o futuro da sua família.">
+  <style>
+    :root {
+      --ink: #184D9B;
+      --coal: #184D9B;
+      --soft-ink: #123c7a;
+      --muted: #52607a;
+      --line: #C5D3E6;
+      --paper: #f5f8fc;
+      --white: #ffffff;
+      --gold: #F09311;
+      --gold-dark: #ffab3d;
+      --warm: #eaf0f9;
+      --shadow: 0 22px 55px rgba(24, 77, 155, .12);
+      --radius: 8px;
+      --container: min(1120px, calc(100vw - 32px));
+      color-scheme: light;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Yu Gothic UI Light", "Yu Gothic UI", system-ui, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    img,
+    svg {
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    summary {
+      font: inherit;
+    }
+
+    .page {
+      overflow: hidden;
+    }
+
+    .container {
+      width: var(--container);
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: fixed;
+      z-index: 10;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 18px 0;
+      color: var(--white);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-14px);
+      transition: opacity .25s ease, transform .25s ease, background .25s ease, backdrop-filter .25s ease;
+    }
+
+    .site-header.is-scrolled {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+      background: rgba(18, 60, 122, .85);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 12px 34px rgba(24, 77, 155, .22);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      height: 50px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      display: grid;
+      gap: 1px;
+      min-width: 0;
+    }
+
+    .brand-name strong {
+      font-family: "Barlow", sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .brand-name span {
+      color: rgba(255, 255, 255, .68);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .brand-name .brand-oab {
+      color: rgba(255, 255, 255, .58);
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .nav-link {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      min-height: 40px;
+      padding: 0 14px;
+      border: 1px solid rgba(255, 255, 255, .24);
+      border-radius: 999px;
+      color: rgba(255, 255, 255, .9);
+      font-size: .86rem;
+      font-weight: 700;
+      backdrop-filter: blur(12px);
+    }
+
+    .hero {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 100vh;
+      min-height: 100svh;
+      isolation: isolate;
+      overflow: hidden;
+      color: var(--white);
+      background: var(--coal);
+    }
+
+    .hero-media picture,
+    .hero-media img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-media {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      width: 100%;
+      height: clamp(200px, 40svh, 350px);
+      overflow: hidden;
+    }
+
+    .hero-media img {
+      object-fit: cover;
+      object-position: 75% top;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: clamp(200px, 40svh, 350px);
+      z-index: 1;
+      background:
+        linear-gradient(0deg, var(--coal) 0%, rgba(24, 77, 155, 0.6) 25%, rgba(24, 77, 155, 0) 65%);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(160px, 32svh, 240px) 0 calc(88px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .hero-copy {
+      display: grid;
+      gap: 16px;
+      width: 100%;
+      max-width: 660px;
+      margin: 0 auto;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      width: fit-content;
+      color: rgba(255, 255, 255, .82);
+      font-size: .74rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1,
+    h2 {
+      font-family: "Barlow", sans-serif;
+      font-weight: 500;
+      line-height: 1.06;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 21ch;
+      font-size: clamp(2.1rem, 8vw, 3rem);
+    }
+
+    .hero-copy>p {
+      max-width: 560px;
+      color: rgba(255, 255, 255, .8);
+      font-size: 1.125rem;
+    }
+
+    strong {
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .hero-copy>p strong,
+    .final-copy>p strong {
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .hero-copy .eyebrow {
+      display: none;
+    }
+
+    .hero-actions {
+      display: grid;
+      gap: 12px;
+      width: min(100%, 380px);
+      margin-top: 0;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 54px;
+      padding: 0 18px;
+      border: 0;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #c9740d 0%, #F09311 50%, #c9740d 100%);
+      color: #ffffff;
+      font-size: .95rem;
+      font-weight: 850;
+      text-align: center;
+      text-shadow: 0 1px 2px rgba(74, 38, 0, .35);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .35),
+        inset 0 -1px 0 rgba(74, 38, 0, .28),
+        0 0 0 0 rgba(240, 147, 17, 0),
+        0 12px 32px rgba(240, 147, 17, .45);
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, #F09311 0%, #ffb347 50%, #F09311 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .45),
+        inset 0 -1px 0 rgba(74, 38, 0, .22),
+        0 0 22px rgba(240, 147, 17, .55),
+        0 16px 40px rgba(240, 147, 17, .55);
+    }
+
+    .button svg {
+      width: 19px;
+      height: 19px;
+      flex: 0 0 auto;
+    }
+
+    .hero-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      color: rgba(255, 255, 255, .7);
+      font-size: .86rem;
+      text-align: center;
+    }
+
+    .hero-note svg {
+      width: 17px;
+      height: 17px;
+      color: var(--gold);
+      flex: 0 0 auto;
+    }
+
+    .trust-row {
+      overflow: hidden;
+      width: 100%;
+      background:
+        linear-gradient(90deg, #0a2c5c 0%, #184D9B 30%, #2568c4 50%, #184D9B 70%, #0a2c5c 100%);
+      border-top: 1px solid rgba(240, 147, 17, .28);
+      border-bottom: 1px solid rgba(240, 147, 17, .28);
+    }
+
+    .trust-track {
+      display: flex;
+      width: max-content;
+      animation: trust-marquee 13s linear infinite;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 62px;
+      padding: 16px 26px;
+      color: transparent;
+      background: linear-gradient(110deg, var(--gold) 0%, var(--gold-dark) 50%, var(--gold) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      font-size: .9rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .trust-item svg {
+      width: 20px;
+      height: 20px;
+      color: var(--gold);
+      flex: 0 0 auto;
+    }
+
+    @keyframes trust-marquee {
+      from {
+        transform: translate3d(0, 0, 0);
+      }
+
+      to {
+        transform: translate3d(-50%, 0, 0);
+      }
+    }
+
+    .pain,
+    .method,
+    .faq {
+      padding: 70px 0;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      color: var(--gold-dark);
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .section-kicker::before {
+      content: "";
+      width: 24px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    .section-title {
+      max-width: 700px;
+      color: var(--ink);
+      font-size: clamp(1.85rem, 8vw, 2.6rem);
+    }
+
+    .section-text {
+      max-width: 720px;
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 1.125rem;
+    }
+
+    .pain {
+      background: var(--paper);
+    }
+
+    .pain-grid {
+      display: grid;
+      gap: 28px;
+    }
+
+    .pain-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .pain-list li {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      align-items: center;
+      gap: 12px;
+      min-height: 58px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .72);
+      color: var(--soft-ink);
+      font-weight: 750;
+      box-shadow: 0 14px 34px rgba(24, 77, 155, .06);
+    }
+
+    .pain-list .icon-box {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #eaf1fa;
+      color: var(--gold);
+    }
+
+    .pain-list svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .pain-actions,
+    .method-action {
+      display: grid;
+      gap: 18px;
+      justify-items: center;
+    }
+
+    .method-action {
+      margin-top: 48px;
+    }
+
+    .section-action {
+      display: inline-flex;
+      width: min(100%, 380px);
+      margin: 6px auto 0;
+    }
+
+    .method {
+      background: var(--warm);
+      border-block: 1px solid var(--line);
+    }
+
+    .method-head {
+      display: grid;
+      gap: 18px;
+      margin-bottom: 42px;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .steps {
+      display: grid;
+      gap: 14px;
+      counter-reset: step;
+    }
+
+    .step {
+      position: relative;
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      gap: 14px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(240, 147, 17, .18);
+      counter-increment: step;
+    }
+
+    .step:last-child {
+      border-bottom: 0;
+    }
+
+    .step-icon {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(240, 147, 17, .28);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .55);
+      color: var(--gold-dark);
+    }
+
+    .step-icon svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    .step h3 {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 5px;
+      color: var(--ink);
+      font-size: 1rem;
+      line-height: 1.3;
+    }
+
+    .step h3::before {
+      content: "0" counter(step);
+      color: var(--gold-dark);
+      font-size: .73rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 1.125rem;
+    }
+
+    .faq {
+      background: var(--paper);
+    }
+
+    .faq-grid {
+      display: grid;
+      gap: 28px;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: 0 16px 38px rgba(24, 77, 155, .06);
+    }
+
+    summary {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 64px;
+      padding: 17px 18px;
+      color: var(--ink);
+      font-weight: 850;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary svg {
+      width: 18px;
+      height: 18px;
+      color: var(--gold-dark);
+      flex: 0 0 auto;
+      transition: transform .2s ease;
+    }
+
+    details[open] summary svg {
+      transform: rotate(45deg);
+    }
+
+    details p {
+      padding: 0 18px 18px;
+      color: var(--muted);
+      font-size: 1.125rem;
+    }
+
+    .final-cta {
+      position: relative;
+      padding: 72px 0 92px;
+      color: var(--white);
+      background:
+        linear-gradient(135deg, rgba(8, 28, 58, .98), rgba(24, 77, 155, .96)),
+        var(--coal);
+      isolation: isolate;
+    }
+
+    .final-cta::before {
+      content: "SM";
+      position: absolute;
+      z-index: -1;
+      right: -20px;
+      bottom: -60px;
+      color: rgba(255, 255, 255, .03);
+      font-family: "Barlow", sans-serif;
+      font-size: 10rem;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .final-content {
+      display: grid;
+      gap: 22px;
+    }
+
+    .final-cta .section-kicker {
+      color: var(--gold);
+    }
+
+    .final-cta .section-title {
+      color: var(--white);
+    }
+
+    .final-cta .section-text {
+      color: rgba(255, 255, 255, .72);
+    }
+
+    .footer {
+      padding: 26px 0 92px;
+      background: #071c38;
+      color: rgba(255, 255, 255, .52);
+      font-size: .82rem;
+    }
+
+    .footer-inner {
+      display: grid;
+      gap: 8px;
+    }
+
+    .mobile-sticky {
+      position: fixed;
+      z-index: 20;
+      right: 18px;
+      bottom: 18px;
+      left: auto;
+    }
+
+    .mobile-sticky .button {
+      width: 58px;
+      height: 58px;
+      min-height: 58px;
+      gap: 0;
+      padding: 0;
+      border-radius: 50%;
+      font-size: 0;
+      line-height: 0;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .40),
+        0 18px 36px rgba(24, 77, 155, .32);
+    }
+
+    .mobile-sticky .button svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    @media (min-width: 620px) {
+      :root {
+        --container: min(1120px, calc(100vw - 56px));
+      }
+
+      .nav-link {
+        display: inline-flex;
+      }
+
+      .hero-actions {
+        width: fit-content;
+      }
+
+      .button,
+      .section-action {
+        width: fit-content;
+      }
+
+      .trust-item {
+        padding: 18px 34px;
+        border-left: 1px solid rgba(255, 255, 255, .10);
+      }
+
+      .trust-item:first-child {
+        border-left: 0;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .site-header {
+        position: absolute;
+        padding: 24px 0;
+        opacity: 1;
+        pointer-events: auto;
+        transform: none;
+        background: transparent;
+        backdrop-filter: none;
+        box-shadow: none;
+      }
+
+      .site-header.is-scrolled {
+        opacity: 1;
+        pointer-events: auto;
+        transform: none;
+        background: transparent;
+        backdrop-filter: none;
+        box-shadow: none;
+      }
+
+      .brand-mark {
+        height: 64px;
+        width: auto;
+      }
+
+      .brand-name strong {
+        font-size: 1.12rem;
+      }
+
+      .hero::before {
+        inset: 0;
+        z-index: -1;
+        height: auto;
+        background:
+          linear-gradient(90deg, rgba(8, 28, 58, .90) 0%, rgba(24, 77, 155, .60) 30%, rgba(24, 77, 155, .04) 55%, rgba(24, 77, 155, 0) 100%),
+          linear-gradient(180deg, rgba(8, 28, 58, .18), rgba(8, 28, 58, .04));
+      }
+
+      .hero {
+        display: block;
+        height: 100vh;
+        height: 100svh;
+        min-height: 0;
+      }
+
+      .hero-media {
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+
+      .hero-media img {
+        object-position: center center;
+      }
+
+      .hero-inner {
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 0;
+        height: 100vh;
+        height: 100svh;
+        margin-top: 0;
+        padding: 0;
+      }
+
+      .hero-copy {
+        margin: 0;
+        justify-items: start;
+        text-align: left;
+      }
+
+      .hero-note {
+        justify-content: left;
+        text-align: left;
+      }
+
+      .hero-copy .eyebrow {
+        display: inline-flex;
+      }
+
+      .pain-actions {
+        justify-items: start;
+      }
+
+      .section-action {
+        margin-inline: 0;
+      }
+
+      h1 {
+        max-width: 18ch;
+        font-size: clamp(2.8rem, 3.8vw, 4.2rem);
+      }
+
+      .hero-copy>p {
+        font-size: 1.25rem;
+      }
+
+      .pain,
+      .method,
+      .faq {
+        padding: 98px 0;
+      }
+
+      .pain-grid,
+      .faq-grid {
+        grid-template-columns: minmax(0, .9fr) minmax(360px, 1fr);
+        align-items: start;
+        gap: 72px;
+      }
+
+      .method-head {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+        gap: 22px;
+        margin-bottom: 64px;
+      }
+
+      .section-title {
+        font-size: clamp(2.45rem, 3.5vw, 3.35rem);
+      }
+
+      .steps {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        border-top: 1px solid rgba(240, 147, 17, .22);
+        border-bottom: 1px solid rgba(240, 147, 17, .22);
+      }
+
+      .step {
+        grid-template-columns: 1fr;
+        align-content: start;
+        min-height: 250px;
+        padding: 28px 22px;
+        border-right: 1px solid rgba(240, 147, 17, .22);
+        border-bottom: 0;
+      }
+
+      .step:last-child {
+        border-right: 0;
+      }
+
+      .final-cta {
+        padding: 98px 0;
+      }
+
+      .final-content {
+        grid-template-columns: 1fr auto;
+        align-items: end;
+        gap: 60px;
+      }
+
+      .final-copy {
+        max-width: 720px;
+      }
+
+      .footer {
+        padding-bottom: 28px;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr auto;
+        align-items: center;
+      }
+    }
+
+    @media (min-width: 900px) and (max-width: 1440px),
+    (min-width: 900px) and (max-height: 860px) {
+      .hero-inner {
+        padding: clamp(92px, 12svh, 136px) 0 clamp(24px, 4.5svh, 56px);
+      }
+
+      h1 {
+        max-width: 17ch;
+        font-size: clamp(2.0rem, 2.6vw, 2.65rem);
+      }
+    }
+
+    @media (min-width: 1441px) and (min-height: 861px) {
+      h1 {
+        max-width: 16ch;
+        font-size: clamp(2.35rem, 3.3vw, 3.3rem);
+      }
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fade-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-copy > * {
+      animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+    }
+
+    .hero-copy > :nth-child(1) { animation-delay: 0.1s; }
+    .hero-copy > :nth-child(2) { animation-delay: 0.2s; }
+    .hero-copy > :nth-child(3) { animation-delay: 0.3s; }
+    .hero-copy > :nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up, .hero-copy > * {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+
+      .trust-track {
+        animation: none;
+      }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="page">
+    <header class="site-header" aria-label="Cabecalho">
+      <div class="container nav">
+        <a class="brand" href="#top" aria-label="Sinay & Marotta Advogados">
+          <img class="brand-mark" src="logo-branca.png" alt="Sinay & Marotta Advogados" width="150" height="auto">
+        </a>
+        <a class="nav-link" href="#faq" aria-label="Ir para duvidas frequentes">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 17h.01M9.1 9a3 3 0 1 1 4.45 2.62c-.91.49-1.55 1.18-1.55 2.38" stroke="currentColor"
+              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="1.9" />
+          </svg>
+          Dúvidas
+        </a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-media" aria-hidden="true">
+          <picture>
+            <source media="(min-width: 760px)" srcset="hero-bg.png">
+            <img src="hero-bg-mobile.png" alt="" width="1122" height="1402" fetchpriority="high">
+          </picture>
+        </div>
+
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <span class="eyebrow">Direito de família</span>
+            <h1 id="hero-title">Enfrentando um divórcio, uma partilha de bens ou uma disputa pela guarda dos filhos? Conduzimos seu caso com sigilo e respaldo jurídico sólido.</h1>
+            <p><strong>Atendimento próximo, técnico e sem enrolação.</strong> Avaliamos o seu momento e traçamos a <strong>estratégia mais segura</strong> para você, com reuniões presenciais ou diretamente pelo <strong>WhatsApp.</strong></p>
+            <div class="hero-actions">
+              <a class="button"
+                href="https://wa.me/55XXXXXXXXXXX?text=Olá%2C%20preciso%20de%20orientação%20jurídica%20sobre%20meu%20divórcio."
+                target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M12.04 2a9.88 9.88 0 0 0-8.46 14.96L2.24 22l5.16-1.3A9.9 9.9 0 1 0 12.04 2Zm0 1.8a8.1 8.1 0 0 1 6.9 12.33 8.07 8.07 0 0 1-9.42 3.03l-.34-.15-3.16.8.82-3.08-.18-.36A8.08 8.08 0 0 1 12.04 3.8Zm-3.6 3.95c-.18 0-.47.07-.72.35-.25.27-.95.93-.95 2.26 0 1.34.98 2.63 1.11 2.82.14.18 1.9 3.04 4.75 4.14 2.37.93 2.85.75 3.36.7.52-.05 1.67-.68 1.9-1.34.24-.66.24-1.22.17-1.34-.07-.11-.26-.18-.54-.32-.27-.13-1.66-.82-1.91-.91-.26-.1-.45-.14-.64.13-.18.28-.73.91-.9 1.1-.16.18-.33.2-.6.06-.28-.14-1.18-.43-2.24-1.38-.83-.74-1.39-1.66-1.55-1.94-.17-.27-.02-.42.12-.56.13-.12.28-.32.42-.48.13-.16.18-.27.27-.46.1-.18.05-.34-.02-.48-.07-.13-.62-1.53-.87-2.1-.23-.54-.46-.55-.64-.56h-.54Z" />
+                </svg>
+                ➔ Conversar com um Advogado no WhatsApp
+              </a>
+              <span class="hero-note">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M20 7 9 18l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+                Retorno rápido, sigilo total e nenhuma burocracia no primeiro contato.
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <div class="trust-row" aria-label="Diferenciais do atendimento">
+        <div class="trust-track">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Atendimento Presencial ou pelo WhatsApp
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Confidencialidade Garantida
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 6v6l4 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Condução Ágil e Conciliatória
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+            Blindagem Patrimonial
+          </div>
+          <!-- Duplicados para marquee contínuo -->
+          <div class="trust-item" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Atendimento Presencial ou pelo WhatsApp
+          </div>
+          <div class="trust-item" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Confidencialidade Garantida
+          </div>
+          <div class="trust-item" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 6v6l4 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Condução Ágil e Conciliatória
+          </div>
+          <div class="trust-item" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+            Blindagem Patrimonial
+          </div>
+          <div class="trust-item" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Atendimento Presencial ou pelo WhatsApp
+          </div>
+          <div class="trust-item" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Confidencialidade Garantida
+          </div>
+          <div class="trust-item" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 6v6l4 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Condução Ágil e Conciliatória
+          </div>
+          <div class="trust-item" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+            Blindagem Patrimonial
+          </div>
+        </div>
+      </div>
+
+      <section class="pain" aria-labelledby="pain-title">
+        <div class="container pain-grid">
+          <div>
+            <span class="section-kicker">Acolhimento</span>
+            <h2 class="section-title" id="pain-title">Sabemos que o fim de um casamento está entre os momentos mais dolorosos que uma família pode enfrentar.</h2>
+            <p class="section-text">Postergar uma decisão ou seguir sem orientação técnica tende a <strong>alongar o conflito</strong>, travar a divisão de bens e desestabilizar a rotina dos seus filhos. Sem amparo jurídico especializado, esse período costuma trazer:</p>
+          </div>
+          <div class="pain-actions">
+            <ul class="pain-list" aria-label="Riscos de lidar sem orientacao juridica">
+              <li>
+                <span class="icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 7v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    <path d="M12 17h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+                  </svg>
+                </span>
+                Processos longos e desgastantes no fórum.
+              </li>
+              <li>
+                <span class="icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 7v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    <path d="M12 17h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+                  </svg>
+                </span>
+                Perdas financeiras por acordos de pensão mal calculados.
+              </li>
+              <li>
+                <span class="icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 7v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    <path d="M12 17h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+                  </svg>
+                </span>
+                Desgaste emocional e exposição indevida da vida privada.
+              </li>
+              <li>
+                <span class="icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 7v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    <path d="M12 17h.01" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+                  </svg>
+                </span>
+                Insegurança quanto à partilha do patrimônio e à convivência com os filhos.
+              </li>
+            </ul>
+            <a class="button section-action"
+              href="https://wa.me/55XXXXXXXXXXX?text=Olá%2C%20quero%20entender%20meus%20direitos%20em%20um%20divórcio%20ou%20guarda."
+              target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M12.04 2a9.88 9.88 0 0 0-8.46 14.96L2.24 22l5.16-1.3A9.9 9.9 0 1 0 12.04 2Zm0 1.8a8.1 8.1 0 0 1 6.9 12.33 8.07 8.07 0 0 1-9.42 3.03l-.34-.15-3.16.8.82-3.08-.18-.36A8.08 8.08 0 0 1 12.04 3.8Zm-3.6 3.95c-.18 0-.47.07-.72.35-.25.27-.95.93-.95 2.26 0 1.34.98 2.63 1.11 2.82.14.18 1.9 3.04 4.75 4.14 2.37.93 2.85.75 3.36.7.52-.05 1.67-.68 1.9-1.34.24-.66.24-1.22.17-1.34-.07-.11-.26-.18-.54-.32-.27-.13-1.66-.82-1.91-.91-.26-.1-.45-.14-.64.13-.18.28-.73.91-.9 1.1-.16.18-.33.2-.6.06-.28-.14-1.18-.43-2.24-1.38-.83-.74-1.39-1.66-1.55-1.94-.17-.27-.02-.42.12-.56.13-.12.28-.32.42-.48.13-.16.18-.27.27-.46.1-.18.05-.34-.02-.48-.07-.13-.62-1.53-.87-2.1-.23-.54-.46-.55-.64-.56h-.54Z" />
+              </svg>
+              ➔ Quero Entender Meus Direitos
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="method" aria-labelledby="method-title">
+        <div class="container">
+          <div class="method-head">
+            <div>
+              <span class="section-kicker">Como funciona</span>
+              <h2 class="section-title" id="method-title">Nosso Método de Atuação</h2>
+            </div>
+            <p class="section-text">Uma condução jurídica clara e sem distância entre você e a equipe responsável pelo seu caso. Construímos um processo simples para que você <strong>retome o controle da sua vida</strong>, acompanhe cada etapa e decida com segurança, longe do juridiquês.</p>
+          </div>
+
+          <div class="steps">
+            <article class="step">
+              <span class="step-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <div>
+                <h3>Primeiro Contato</h3>
+                <p>Você chama pelo WhatsApp, sem formulários longos e sem espera.</p>
+              </div>
+            </article>
+            <article class="step">
+              <span class="step-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" stroke="currentColor" stroke-width="1.8" />
+                  <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" stroke="currentColor"
+                    stroke-width="1.8" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <div>
+                <h3>Escuta e Análise do Caso</h3>
+                <p>Entendemos sua história com atenção, sob total confidencialidade das informações trocadas.</p>
+              </div>
+            </article>
+            <article class="step">
+              <span class="step-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M9 11h6M9 15h4M5 4h14v16H5z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
+              <div>
+                <h3>Estratégia Jurídica</h3>
+                <p>Apresentamos os seus direitos e as opções disponíveis de forma direta e sem rodeios.</p>
+              </div>
+            </article>
+            <article class="step">
+              <span class="step-icon">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M20 7 9 18l-5-5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
+              <div>
+                <h3>Atuação Firme no seu Caso</h3>
+                <p>Tomamos as providências necessárias para resolver guarda, pensão ou divórcio, com você informado a cada passo.</p>
+              </div>
+            </article>
+          </div>
+          <div class="method-action">
+            <a class="button section-action"
+              href="https://wa.me/55XXXXXXXXXXX?text=Olá%2C%20quero%20falar%20com%20a%20equipe%20jurídica%20agora."
+              target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M12.04 2a9.88 9.88 0 0 0-8.46 14.96L2.24 22l5.16-1.3A9.9 9.9 0 1 0 12.04 2Zm0 1.8a8.1 8.1 0 0 1 6.9 12.33 8.07 8.07 0 0 1-9.42 3.03l-.34-.15-3.16.8.82-3.08-.18-.36A8.08 8.08 0 0 1 12.04 3.8Zm-3.6 3.95c-.18 0-.47.07-.72.35-.25.27-.95.93-.95 2.26 0 1.34.98 2.63 1.11 2.82.14.18 1.9 3.04 4.75 4.14 2.37.93 2.85.75 3.36.7.52-.05 1.67-.68 1.9-1.34.24-.66.24-1.22.17-1.34-.07-.11-.26-.18-.54-.32-.27-.13-1.66-.82-1.91-.91-.26-.1-.45-.14-.64.13-.18.28-.73.91-.9 1.1-.16.18-.33.2-.6.06-.28-.14-1.18-.43-2.24-1.38-.83-.74-1.39-1.66-1.55-1.94-.17-.27-.02-.42.12-.56.13-.12.28-.32.42-.48.13-.16.18-.27.27-.46.1-.18.05-.34-.02-.48-.07-.13-.62-1.53-.87-2.1-.23-.54-.46-.55-.64-.56h-.54Z" />
+              </svg>
+              ➔ Iniciar Conversa com a Equipe
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq" id="faq" aria-labelledby="faq-title">
+        <div class="container faq-grid">
+          <div>
+            <span class="section-kicker">Antes de Começar</span>
+            <h2 class="section-title" id="faq-title">Perguntas Mais Comuns</h2>
+            <p class="section-text">As dúvidas aparecem antes mesmo do primeiro contato — e está tudo bem. Preferimos deixar <strong>prazos</strong>, <strong>forma de atuação</strong> e valores claros logo de início.</p>
+          </div>
+          <div class="faq-list">
+            <details open>
+              <summary>
+                Quanto tempo leva um divórcio ou uma disputa de guarda?
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </summary>
+              <p>Sempre que possível, priorizamos o acordo entre as partes — caminho mais rápido e que poupa desgaste emocional e financeiro. Na ausência de consenso, defendemos seus interesses judicialmente com a máxima agilidade que o processo permite.</p>
+            </details>
+            <details>
+              <summary>
+                Como funcionam os honorários do escritório?
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </summary>
+              <p>Trabalhamos com honorários transparentes, definidos antes do início do processo. Sabendo das dificuldades financeiras desse momento, oferecemos parcelamento em até 5 vezes, sem abrir mão da qualidade técnica do atendimento.</p>
+            </details>
+            <details>
+              <summary>
+                E se o outro lado não quiser fechar acordo?
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </summary>
+              <p>A falta de acordo não impede a formalização do divórcio, da guarda ou da pensão. A legislação brasileira assegura esses direitos independentemente da concordância da outra parte, e cuidamos de toda a via judicial necessária sem desgaste para você.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="final-cta" aria-labelledby="final-title">
+        <div class="container final-content">
+          <div class="final-copy">
+            <span class="section-kicker">Fale Agora</span>
+            <h2 class="section-title" id="final-title">Sua família merece estabilidade — e isso começa com a decisão certa hoje.</h2>
+            <p class="section-text">Regularizar sua situação jurídica é o <strong>passo que muda o rumo</strong> da sua história, abrindo caminho para planejar o futuro com clareza. Nossa equipe está pronta para te <strong>ouvir agora mesmo.</strong></p>
+          </div>
+          <a class="button"
+            href="https://wa.me/55XXXXXXXXXXX?text=Olá%2C%20quero%20iniciar%20meu%20atendimento%20em%20direito%20de%20família."
+            target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M12.04 2a9.88 9.88 0 0 0-8.46 14.96L2.24 22l5.16-1.3A9.9 9.9 0 1 0 12.04 2Zm0 1.8a8.1 8.1 0 0 1 6.9 12.33 8.07 8.07 0 0 1-9.42 3.03l-.34-.15-3.16.8.82-3.08-.18-.36A8.08 8.08 0 0 1 12.04 3.8Zm-3.6 3.95c-.18 0-.47.07-.72.35-.25.27-.95.93-.95 2.26 0 1.34.98 2.63 1.11 2.82.14.18 1.9 3.04 4.75 4.14 2.37.93 2.85.75 3.36.7.52-.05 1.67-.68 1.9-1.34.24-.66.24-1.22.17-1.34-.07-.11-.26-.18-.54-.32-.27-.13-1.66-.82-1.91-.91-.26-.1-.45-.14-.64.13-.18.28-.73.91-.9 1.1-.16.18-.33.2-.6.06-.28-.14-1.18-.43-2.24-1.38-.83-.74-1.39-1.66-1.55-1.94-.17-.27-.02-.42.12-.56.13-.12.28-.32.42-.48.13-.16.18-.27.27-.46.1-.18.05-.34-.02-.48-.07-.13-.62-1.53-.87-2.1-.23-.54-.46-.55-.64-.56h-.54Z" />
+            </svg>
+            ➔ Falar com a Sinay & Marotta Agora
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span>Sinay & Marotta Advogados · OAB/[UF] [00.000]</span>
+        <span>Assessoria jurídica em Direito de Família com ética, sigilo e transparência. Atendimento presencial e online em todo o Brasil.</span>
+      </div>
+    </footer>
+
+    <div class="mobile-sticky" aria-label="Atalho para WhatsApp">
+      <a class="button"
+        href="https://wa.me/55XXXXXXXXXXX?text=Olá%2C%20preciso%20de%20orientação%20sobre%20divórcio%2C%20guarda%20ou%20partilha."
+        target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M12.04 2a9.88 9.88 0 0 0-8.46 14.96L2.24 22l5.16-1.3A9.9 9.9 0 1 0 12.04 2Zm0 1.8a8.1 8.1 0 0 1 6.9 12.33 8.07 8.07 0 0 1-9.42 3.03l-.34-.15-3.16.8.82-3.08-.18-.36A8.08 8.08 0 0 1 12.04 3.8Zm-3.6 3.95c-.18 0-.47.07-.72.35-.25.27-.95.93-.95 2.26 0 1.34.98 2.63 1.11 2.82.14.18 1.9 3.04 4.75 4.14 2.37.93 2.85.75 3.36.7.52-.05 1.67-.68 1.9-1.34.24-.66.24-1.22.17-1.34-.07-.11-.26-.18-.54-.32-.27-.13-1.66-.82-1.91-.91-.26-.1-.45-.14-.64.13-.18.28-.73.91-.9 1.1-.16.18-.33.2-.6.06-.28-.14-1.18-.43-2.24-1.38-.83-.74-1.39-1.66-1.55-1.94-.17-.27-.02-.42.12-.56.13-.12.28-.32.42-.48.13-.16.18-.27.27-.46.1-.18.05-.34-.02-.48-.07-.13-.62-1.53-.87-2.1-.23-.54-.46-.55-.64-.56h-.54Z" />
+        </svg>
+        WhatsApp Agora
+      </a>
+    </div>
+  </div>
+  <script>
+    const siteHeader = document.querySelector('.site-header');
+    const toggleHeader = () => {
+      siteHeader.classList.toggle('is-scrolled', window.scrollY > 24);
+    };
+
+    toggleHeader();
+    window.addEventListener('scroll', toggleHeader, { passive: true });
+
+    // Animations Observer
+    const animateElements = document.querySelectorAll('.section-kicker, .section-title, .section-text, .step, .pain-list li, .faq details, .final-copy, .section-action');
+
+    animateElements.forEach((el, i) => {
+      el.classList.add('fade-up');
+      el.style.transitionDelay = `${(i % 3) * 0.1}s`;
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: "0px 0px -50px 0px" });
+
+    animateElements.forEach(el => observer.observe(el));
+  </script>
+</body>
+
+</html>
